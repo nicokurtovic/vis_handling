@@ -1,6 +1,13 @@
 # Vishandling
 
-Collection of codes to extract, handle, and insert visibilities from gas measurement sets to txt files, in CASA. 
+Collection of codes to extract, handle, and insert visibilities from gas measurement sets to txt files, in CASA. All of these instructions are thought for extracting the visibilities of a single molecular line. You can adapt the codes for any emission line! 
+
+Sections:
+- [Extract gas visibilities from a measurement set](https://github.com/nicokurtovic/vis_handling?tab=readme-ov-file#extract-the-visibilities-of-your-gas-emission).
+- [Insert gas visibilities into a measurement set](https://github.com/nicokurtovic/vis_handling?tab=readme-ov-file#insert-the-visibilities-of-your-model-in-a-measurement-set).
+- [What to do if I have multiple spectral windows](https://github.com/nicokurtovic/vis_handling/blob/main/README.md#what-to-do-if-i-have-multiple-spectral-windows).
+- [Notes about velocity reference system](). 
+
 
 ![Example of visibilities](./channel_vis.png)
 
