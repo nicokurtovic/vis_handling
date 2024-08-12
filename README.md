@@ -13,7 +13,7 @@ Sections:
 
 ## Extract the visibilities of your gas emission
 
-The gas emission in a measurement set (from now on, ms files) is contained in channels, which are grouped in spectral windows. In this example, we will assume that only *one spectral window* is present in the ms file. You can check this by doing *listobs* in [CASA](https://casaguides.nrao.edu/index.php/ALMA_Tutorials). For multiple spectral windows, please check the Section ``[what to do if I have multiple spectral windows](https://github.com/nicokurtovic/vis_handling/blob/main/README.md#what-to-do-if-i-have-multiple-spectral-windows)".
+The gas emission in a measurement set (from now on, ms files) is contained in channels, which are grouped in spectral windows. In this example, we will assume that only *one spectral window* is present in the ms file. You can check this by doing *listobs* in [CASA](https://casaguides.nrao.edu/index.php/ALMA_Tutorials). For multiple spectral windows, please check the Section ``[what to do if I have multiple spectral windows"](https://github.com/nicokurtovic/vis_handling/blob/main/README.md#what-to-do-if-i-have-multiple-spectral-windows).
 
 The necessary functions to extract the visibilities of each channel are in the file *CO_to_ascii.py*, which you should not need to modify. For the extraction of the visibilities, we will executre the code *CO_uvtable_extraction.py*, which is further explained in this Section. 
 
@@ -59,6 +59,12 @@ keepflags = False
 
 **And that's all!** You should not need to modify anything else in the code. If you run it as is, the visibility table of each channel will be stored in the folder *uvtables_dir*, including two *.npy* files containing the velocity and frequency of each channel. 
 
+{% tip %}
+
+**Note:** Please check the frequency and velocity saved by the code, and compare them with those from *tclean* when you run using *outframe='LSRK'*. If they do not coincide, check Section "[what to do if I have multiple spectral windows](https://github.com/nicokurtovic/vis_handling/blob/main/README.md#what-to-do-if-i-have-multiple-spectral-windows)".
+
+{% endtip %}
+
 In case you are interested in the details of the extraction, here's how it works: Before extracting the visibilities, we need to make sure the column of weights has been initialized in the measurement set. We can do this very simply by just running *initweigths*.
 
 ```
@@ -100,3 +106,10 @@ When combining multiple observations (either multiple antenna configurations, or
 **Scenario 1**, Re-bin the data to the lowest frequency resolution: Multiple spectral windows can be binned into a single spectral window using the function *cvel2* in CASA, thus obtaining a measurement set with a single spectral window, but limiting the frequency resolution to the lowest frequency resolution of your datasets. This solution is exampled in the code *reduce_spw.py*, where the original measurement set of PDS111 was reduced from two spectral windows into one. 
 
 **Scenario 2**, Conserve the information of each spectral window: In the case of multiple observations of the same target, you can potentially have channels of different frequency width, which you want to conserve and model independently to conserve flux and velocity information. In this case, I recommend using *split* to separate the original measurement set into several measurement sets containing one spectral window each. Then, you can execute the codes of this repository in each ms file, and make sure to save the channel visibilities in different *uvtable_dir*.
+
+
+## My velocity array does not coincide with the LSRK velocities from tclean. 
+
+If they do not coincide, it might be because the velocities of each channel were saved in the *TOPO* reference system. You can check if this is the case by running *tclean* with *outframe='TOPO'*. You can use *cvel2* to change the reference system to LSRK. Otherwise, this shift can also be corrected later in *Python*. 
+
+
