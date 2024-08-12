@@ -6,7 +6,7 @@ Collection of codes to extract, handle, and insert visibilities from gas measure
 
 ## Extract the visibilities of your gas emission
 
-The gas emission in a measurement set (from now on, ms files) is contained in channels, which are grouped in spectral windows. In this example, we will assume that only *one spectral window* is present in the ms file. You can check this by doing *listobs* in [CASA](https://casaguides.nrao.edu/index.php/ALMA_Tutorials). For multiple spectral windows, please check the Section ``what to do if I have multiple spectral windows".
+The gas emission in a measurement set (from now on, ms files) is contained in channels, which are grouped in spectral windows. In this example, we will assume that only *one spectral window* is present in the ms file. You can check this by doing *listobs* in [CASA](https://casaguides.nrao.edu/index.php/ALMA_Tutorials). For multiple spectral windows, please check the Section ``[what to do if I have multiple spectral windows](https://github.com/nicokurtovic/vis_handling/blob/main/README.md#what-to-do-if-i-have-multiple-spectral-windows)".
 
 The necessary functions to extract the visibilities of each channel are in the file *CO_to_ascii.py*, which you should not need to modify. For the extraction of the visibilities, we will executre the code *CO_uvtable_extraction.py*, which is further explained in this Section. 
 
