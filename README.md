@@ -6,11 +6,11 @@ Collection of codes to extract, handle, and insert visibilities from gas measure
 
 ## Extract the visibilities of your gas emission
 
-The gas emission in a measurement set (from now on, ms files) is contained in channels, which are grouped in spectral windows. For this example, we will assume that only *one spectral window* is present in the ms file. For multiple spectral windows, please check what to do if I have multiple spectral windows.
+The gas emission in a measurement set (from now on, ms files) is contained in channels, which are grouped in spectral windows. In this example, we will assume that only *one spectral window* is present in the ms file. You can check this by doing *listobs* in [CASA](https://casaguides.nrao.edu/index.php/ALMA_Tutorials). For multiple spectral windows, please check the Section ``what to do if I have multiple spectral windows".
 
 The necessary functions to extract the visibilities of each channel are in the file *CO_to_ascii.py*, which you should not need to modify. For the extraction of the visibilities, we will executre the code *CO_uvtable_extraction.py*, which is further explained in this Section. 
 
-The first step in extracting the visibilities is to execute this file, as well as importing the [analysis utilities](https://casaguides.nrao.edu/index.php/Analysis_Utilities) of [CASA](https://casaguides.nrao.edu/index.php/ALMA_Tutorials) ([CASA Team et al., 2022](https://ui.adsabs.harvard.edu/abs/2022PASP..134k4501C/abstract); [Hunter et al., 2023](https://ui.adsabs.harvard.edu/abs/2023PASP..135g4501H/abstract)). 
+The first step in extracting the visibilities is to call the *CO_to_ascii.py* functions, as well as importing the [analysis utilities](https://casaguides.nrao.edu/index.php/Analysis_Utilities) of CASA ([CASA Team et al., 2022](https://ui.adsabs.harvard.edu/abs/2022PASP..134k4501C/abstract); [Hunter et al., 2023](https://ui.adsabs.harvard.edu/abs/2023PASP..135g4501H/abstract)). 
 
 ```
 # Import the analysis scripts, available in:
@@ -23,7 +23,7 @@ import analysisUtils as au
 execfile('./CO_to_ascii.py')
 ```
 
-Several functions will be loaded from *CO_to_ascii.py*, with the most relevant being *ms_to_ascii*, which takes a measurement set and writes the visibilities into txt format. Before we get to this point, we need to set the name, paths, and frequency of the line we are interested in working with. In this example, we will be extracting the visibilities of the 12CO J:2-1 emission of PDS111, published in Derkink et al., (incl. Kurtovic, 2024).
+Several functions will be loaded from *CO_to_ascii.py*, the most relevant being *ms_to_ascii*, which takes a measurement set and writes the visibilities into txt format. Before we get to this point, we need to set the name, paths, and frequency of the line we are interested in working with. In this example, we will be extracting the visibilities of the 12CO J:2-1 emission of PDS111, published in Derkink et al., (incl. Kurtovic, 2024).
 
 ```
 # Prefix for naming files
@@ -84,3 +84,12 @@ Are you interested in how the visibilities are written into a measurement set? T
 3) The temporary ms file is concatenated with the previous channel, and iterates until all of the channels are concatenated.
 
 The resulting ms file will have as many spws as the number of channels in the original ms file. This architecture is a direct result of building the ms file by concatenating. You can return everything to a single spw it using *cvel2*, but otherwise, having the channels in separate spectral windows does not affect how tclean works. 
+
+
+## What to do if I have multiple spectral windows
+
+When combining multiple observations (either multiple antenna configurations, or several different visits to the same target), you might end up with multiple spectral windows containing the line emission you want to extract. There are two different approaches you can take to extracting the visibilities in this scenario:
+
+**Scenario 1**, Re-bin the data to the lowest frequency resolution: Multiple spectral windows can be binned into a single spectral window using the function *cvel2* in CASA, thus obtaining a measurement set with a single spectral window, but limiting the frequency resolution to the lowest frequency resolution of your datasets. This solution is exampled in the code *reduce_spw.py*, where the original measurement set of PDS111 was reduced from two spectral windows into one. 
+
+**Scenario 2**, Conserve the information of each spectral window: In the case of multiple observations of the same target, you can potentially have channels of different frequency width, which you want to conserve and model independently to conserve flux and velocity information. In this case, I recommend using *split* to separate the original measurement set into several measurement sets containing one spectral window each. Then, you can execute the codes of this repository in each ms file, and make sure to save the channel visibilities in different *uvtable_dir*.
