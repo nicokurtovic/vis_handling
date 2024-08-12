@@ -49,18 +49,17 @@ line = '12CO'
 freq_line = 230.5380000e9 # 12CO J=2-1, Hz
 freq_GHz  = str(freq_line*1e-9)+'GHz'
 
-# Initialize weight column
-initweights(vis=gas_msfile, wtmode='weight', dowtsp=True)
-
 # Extract flagged visibilities? False for no, True for yes
 keepflags = False
-
 
 ################################################################################
 #                              UVTABLE EXTRACTION                              #
 ################################################################################
 
 # From here onwards, you should not need to modify anything
+
+# Initialize weight column
+initweights(vis=gas_msfile, wtmode='weight', dowtsp=True)
 
 # Array to save frequencies
 freqs = []
