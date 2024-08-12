@@ -6,7 +6,7 @@ Sections:
 - [Extract gas visibilities from a measurement set](https://github.com/nicokurtovic/vis_handling?tab=readme-ov-file#extract-the-visibilities-of-your-gas-emission).
 - [Insert gas visibilities into a measurement set](https://github.com/nicokurtovic/vis_handling?tab=readme-ov-file#insert-the-visibilities-of-your-model-in-a-measurement-set).
 - [What to do if I have multiple spectral windows](https://github.com/nicokurtovic/vis_handling/blob/main/README.md#what-to-do-if-i-have-multiple-spectral-windows).
-- [Notes about velocity reference system](). 
+- [Notes about velocity reference system](https://github.com/nicokurtovic/vis_handling?tab=readme-ov-file#my-velocity-array-does-not-coincide-with-the-lsrk-velocities-from-tclean). 
 
 
 ![Example of visibilities](./channel_vis.png)
@@ -61,7 +61,7 @@ keepflags = False
 
 {% tip %}
 
-**Note:** Please check the frequency and velocity saved by the code, and compare them with those from *tclean* when you run using *outframe='LSRK'*. If they do not coincide, check Section "[what to do if I have multiple spectral windows](https://github.com/nicokurtovic/vis_handling/blob/main/README.md#what-to-do-if-i-have-multiple-spectral-windows)".
+**Note:** Please check the frequency and velocity saved by the code, and compare them with those from *tclean* when you run using *outframe='LSRK'*. If they do not coincide, check Section "[My velocity array does not coincide with the LSRK velocities from tclean](https://github.com/nicokurtovic/vis_handling?tab=readme-ov-file#my-velocity-array-does-not-coincide-with-the-lsrk-velocities-from-tclean)".
 
 {% endtip %}
 
