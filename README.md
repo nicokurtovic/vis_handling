@@ -2,6 +2,8 @@
 
 Collection of codes to extract, handle, and insert visibilities from gas measurement sets to txt files, in CASA. 
 
+![Example of visibilities](./channel_vis.png)
+
 ## Extract the visibilities of your gas emission
 
 The gas emission in a measurement set (from now on, ms files) is contained in channels, which are grouped in spectral windows. For this example, we will assume that only *one spectral window* is present in the ms file. For multiple spectral windows, please check what to do if I have multiple spectral windows.
