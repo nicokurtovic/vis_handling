@@ -1,7 +1,6 @@
----
-title: Vishandling
-intro: Collection of codes to extract, handle, and insert visibilities from gas measurement sets to txt files, in CASA. 
----
+# Vishandling
+
+Collection of codes to extract, handle, and insert visibilities from gas measurement sets to txt files, in CASA. 
 
 ## Extract the visibilities of your gas emission
 
