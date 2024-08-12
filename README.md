@@ -13,7 +13,7 @@ Sections:
 
 ## Extract the visibilities of your gas emission
 
-The gas emission in a measurement set (from now on, ms files) is contained in channels, which are grouped in spectral windows. In this example, we will assume that only *one spectral window* is present in the ms file. You can check this by doing *listobs* in [CASA](https://casaguides.nrao.edu/index.php/ALMA_Tutorials). For multiple spectral windows, please check the Section ``[what to do if I have multiple spectral windows"](https://github.com/nicokurtovic/vis_handling/blob/main/README.md#what-to-do-if-i-have-multiple-spectral-windows).
+The gas emission in a measurement set (from now on, ms files) is contained in channels, which are grouped in spectral windows. In this example, we will assume that only *one spectral window* is present in the ms file. You can check this by doing *listobs* in [CASA](https://casaguides.nrao.edu/index.php/ALMA_Tutorials). For multiple spectral windows, please check the Section "[what to do if I have multiple spectral windows](https://github.com/nicokurtovic/vis_handling/blob/main/README.md#what-to-do-if-i-have-multiple-spectral-windows)".
 
 The necessary functions to extract the visibilities of each channel are in the file *CO_to_ascii.py*, which you should not need to modify. For the extraction of the visibilities, we will executre the code *CO_uvtable_extraction.py*, which is further explained in this Section. 
 
@@ -110,6 +110,9 @@ When combining multiple observations (either multiple antenna configurations, or
 
 ## My velocity array does not coincide with the LSRK velocities from tclean. 
 
-If they do not coincide, it might be because the velocities of each channel were saved in the *TOPO* reference system. You can check if this is the case by running *tclean* with *outframe='TOPO'*. You can use *cvel2* to change the reference system to LSRK. Otherwise, this shift can also be corrected later in *Python*. 
+Using *tclean*, you generated the cube of the line you want to extract, and you noticed that the velocities in the cube are not the same as those from the extracted visibilities in the *vels* array. If this happens to you, it is very likely that the extracted velocities (frequencies) of each channel are in the *TOPO* reference frame, instead of the *LSRK*. You can check if this is the case by running *tclean* with *outframe='TOPO'*, and confirm if the velocities coincide with those of *vels*. 
+
+For most applications, this should potentially only introduce a constant offset to the velocities. You can solve it at the measurement set level by using *cvel2*, and setting the reference frame of the ms file to *LSRK*, or you can consider an offset when you read the velocities in Python. Alternatively, you can also run the function from analysis utils [*au.topoChannelToLSRK(vis, spw, channel, field, restfreq)*](https://safe.nrao.edu/wiki/bin/view/Main/CasaExtensions), which should return you the *vels* array in *LSRK*, same as *tclean*. 
+
 
 
