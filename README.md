@@ -59,11 +59,9 @@ keepflags = False
 
 **And that's all!** You should not need to modify anything else in the code. If you run it as is, the visibility table of each channel will be stored in the folder *uvtables_dir*, including two *.npy* files containing the velocity and frequency of each channel. 
 
-{% tip %}
+> [!NOTE]
+> Please check the frequency and velocity saved by the code, and compare them with those from *tclean* when you run using *outframe='LSRK'*. If they do not coincide, check Section "[My velocity array does not coincide with the LSRK velocities from tclean](https://github.com/nicokurtovic/vis_handling?tab=readme-ov-file#my-velocity-array-does-not-coincide-with-the-lsrk-velocities-from-tclean)".
 
-**Note:** Please check the frequency and velocity saved by the code, and compare them with those from *tclean* when you run using *outframe='LSRK'*. If they do not coincide, check Section "[My velocity array does not coincide with the LSRK velocities from tclean](https://github.com/nicokurtovic/vis_handling?tab=readme-ov-file#my-velocity-array-does-not-coincide-with-the-lsrk-velocities-from-tclean)".
-
-{% endtip %}
 
 In case you are interested in the details of the extraction, here's how it works: Before extracting the visibilities, we need to make sure the column of weights has been initialized in the measurement set. We can do this very simply by just running *initweigths*.
 
