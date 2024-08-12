@@ -10,7 +10,7 @@ The gas emission in a measurement set (from now on, ms files) is contained in ch
 
 The necessary functions to extract the visibilities of each channel are in the file *CO_to_ascii.py*, which you should not need to modify. For the extraction of the visibilities, we will executre the code *CO_uvtable_extraction.py*, which is further explained in this Section. 
 
-The first step in extracting the visibilities is to execute this file, as well as importing the analysis utilities of CASA (CASA Team et al., 2022; Hunter et al., 2023). 
+The first step in extracting the visibilities is to execute this file, as well as importing the [analysis utilities](https://casaguides.nrao.edu/index.php/Analysis_Utilities) of [CASA](https://casaguides.nrao.edu/index.php/ALMA_Tutorials) ([CASA Team et al., 2022](https://ui.adsabs.harvard.edu/abs/2022PASP..134k4501C/abstract); [Hunter et al., 2023](https://ui.adsabs.harvard.edu/abs/2023PASP..135g4501H/abstract)). 
 
 ```
 # Import the analysis scripts, available in:
